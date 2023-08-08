@@ -1,12 +1,13 @@
 import { validateIdportenToken } from "./auth/validate";
 import { defineMiddleware } from "astro/middleware";
 import { loginUrl } from "./urls";
-import { isInternal, isLocal } from "./utils";
+import { isInternal } from "./utils";
+import { isLocal } from "../utils/environment";
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const bearerToken: string | null | undefined = context.request.headers.get("authorization");
 
-  if (isLocal()) {
+  if (isLocal) {
     return next();
   }
 
