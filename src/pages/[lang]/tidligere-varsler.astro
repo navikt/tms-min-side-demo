@@ -1,14 +1,14 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../layouts/base/Layout.astro";
 import TidligereVarsler from "../../mikrofrontends/tidligere-varsler/TidligereVarsler";
-import Content from "../../components/content/Content.astro";
+import Content from "../../layouts/content/Content.astro";
 import { getLanguage } from "../../language/language";
 
 const language = getLanguage(Astro.url);
 ---
 
 <Layout title="Min side">
-  <Content>
+  <Content cls="content">
     <TidligereVarsler language={language} client:only="react" />
   </Content>
 </Layout>
