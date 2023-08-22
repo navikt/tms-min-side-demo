@@ -1,0 +1,54 @@
+.varsler {
+  color: white;
+  display: flex;
+  width: 100%;
+  padding: 0.5rem;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  background: var(--surface-transparent, rgba(255, 255, 255, 0.00));
+  text-decoration-line: none;
+  min-height: 5rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.varsler:hover .varsler-ikon-rect {
+  fill: #FFAA33;
+}
+
+.varsler:hover .ingen-ikon-rect {
+  fill: #FFFFFF;
+}
+
+.varsler:hover .ingen-ikon-path {
+  fill: #003453;
+}
+
+
+.varsler:hover {
+  background: var(--a-deepblue-700, #003453);
+}
+
+.varsler:hover h3 {
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.06rem;
+}
+
+.varsler p {
+  color: #CCE2F0;
+}
+
+.varsler:hover p {
+  color: #FFFFFF;
+}
+
+@media (min-width: 480px) {
+  .varsler {
+    width: 50%;
+    padding: 1rem;
+  }
+}
