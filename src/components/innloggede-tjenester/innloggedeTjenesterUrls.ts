@@ -22,9 +22,9 @@ const jobbLenkerProd = [
     },
   },
   {
-    nb: "Dialog med din lokale veileder",
-    nn: "Dialog med den lokale rettleiaren din",
-    en: "Communication with your local consultant",
+    nb: "Dialog med veilederen din",
+    nn: "Dialog med rettleiaren din",
+    en: "Dialogue with your advisor",
     url: {
       nb: "http://nav.no/arbeid/dialog",
       nn: "http://nav.no/arbeid/dialog",
