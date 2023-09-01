@@ -1,4 +1,14 @@
 export const text = {
+  varsler: {
+    nb: "Varsler",
+    nn: "Varsler",
+    en: "Notification",
+  },
+  ingenVarsler: {
+    nb: "Ingen nye varsler",
+    nn: "Ingen nye varsel",
+    en: "No notifications",
+  },
   oppgave: {
     nb: "oppgave",
     nn: "oppgåve",
@@ -18,11 +28,6 @@ export const text = {
     nb: "beskjeder",
     nn: "beskjeder",
     en: "messages",
-  },
-  ingenVarsler: {
-    nb: "Ingen nye varsler",
-    nn: "Ingen nye varsel",
-    en: "No notifications",
   },
   og: {
     nb: "og",
