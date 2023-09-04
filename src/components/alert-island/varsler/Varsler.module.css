@@ -1,11 +1,13 @@
 .varsler {
   display: flex;
+  align-items: center;
   gap: 1rem;
   width: 100%;
   padding: 0.5rem;
   color: var(--a-white);
   border-radius: 0.5rem;
   text-decoration-line: none;
+  min-height: 5rem;
 }
 
 .container {
