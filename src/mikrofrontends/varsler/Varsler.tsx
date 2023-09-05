@@ -5,12 +5,14 @@ import ContentLoader from "../../components/loader/ContentLoader";
 import { useBreadcrumbs } from "../../hooks/useBreadcrumbs";
 import { useLanguage } from "../../hooks/useLanguage";
 import { text } from "../../language/text";
-import { varslerUrl } from "./urls";
+import { varslerCdnUrl, varslerManifestUrl } from "./urls";
 import type { Props } from "../types";
-
-const VarslerMikrofrontend = React.lazy(() => import(varslerUrl));
+import { useManifest } from "../../hooks/useManifest.ts";
+import { bundle, entry } from "../entrypoints.ts";
 
 const Varlser = ({ language }: Props) => {
+  const [manifest, isLoadingManifest] = useManifest(varslerManifestUrl);
+
   useLanguage(language);
   useBreadcrumbs(
     [
@@ -26,6 +28,12 @@ const Varlser = ({ language }: Props) => {
   setParams({
     utilsBackground: "white",
   });
+
+  if (isLoadingManifest){
+    return <ContentLoader />;
+  }
+
+  const VarslerMikrofrontend = React.lazy(() => import(`${varslerCdnUrl}/${manifest[entry][bundle]}`));
 
   return (
     <React.Suspense fallback={<ContentLoader />}>
