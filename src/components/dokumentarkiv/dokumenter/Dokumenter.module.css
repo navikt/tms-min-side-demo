@@ -1,0 +1,50 @@
+.dokumentContainer {
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+.skeletonContainer {
+  border-top: 1px solid lightgray;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.dokumentSkeleton {
+  border-top: 1px solid lightgray;
+  margin-bottom: 0.58rem;
+}
+
+.ingenContainer {
+  padding: 1rem 1rem 1.25rem 1rem;
+  background: white;
+  border-radius: 0.5rem;
+  border: 1px solid var(--a-border-divider);
+  color: var(--a-text-subtle);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.linkContainer {
+  display: flex;
+  border-top: 1px solid lightgray;
+  padding: 1rem 0;
+}
+
+.link {
+  color: #272727;
+}
+
+.link:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@media (min-width: 648px) {
+  .dokumentContainer {
+    padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  }
+
+  .ingenContainer {
+    padding: 2.25rem 1.25rem 2.56rem 1.25rem;
+  }
+}
+
