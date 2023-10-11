@@ -27,7 +27,7 @@ interface Props {
 }
 
 const Dokumenter = ({ language }: Props) => {
-  const { data: saker, isLoading } = useSWRImmutable<Dokumenter>({ path: mineSakerApiSisteUrl, include }, fetcher);
+  const { data: saker, isLoading } = useSWRImmutable<Dokumenter>({ path: mineSakerApiSisteUrl, options: include }, fetcher);
   const hasDokumenter = saker && saker.sakstemaer.length > 0;
 
   if (isLoading) {
