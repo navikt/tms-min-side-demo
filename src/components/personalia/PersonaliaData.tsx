@@ -9,9 +9,9 @@ interface Personalia {
 }
 
 const PersonaliaData = () => {
-  const { data: personalia, isLoading, error } = useSWRImmutable({ path: navnUrl }, fetcher);
+  const { data: personalia, error } = useSWRImmutable<Personalia>({ path: navnUrl }, fetcher);
 
-  if ((isLoading) || error) {
+  if (!personalia || error) {
     return null;
   }
 
