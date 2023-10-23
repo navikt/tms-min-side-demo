@@ -31,7 +31,7 @@ const Utkast = ({ language }: Props) => {
   }
 
   setParams({
-    utilsBackground: "transparent",
+    utilsBackground: "gray",
   });
 
   const UtkastMikrofrontend = React.lazy(() => import(`${utkastUrl}/${manifest[entry][bundle]}`));
