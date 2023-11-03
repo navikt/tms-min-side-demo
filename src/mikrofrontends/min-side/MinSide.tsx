@@ -5,7 +5,6 @@ import { useBreadcrumbs } from "../../hooks/useBreadcrumbs";
 import { useLanguage } from "../../hooks/useLanguage";
 import { bundle, oversiktEntry } from "../entrypoints";
 import { oversiktCdnUrl, oversiktManifestUrl } from "./urls";
-import { useSentry } from "../../hooks/useSentry";
 import { useFaro } from "../../hooks/useFaro";
 import { useStatistikk } from "../../hooks/useStatistikk";
 import type { Props } from "../types";
@@ -17,7 +16,6 @@ const MinSide = ({ language }: Props) => {
 
   useLanguage(language);
   useBreadcrumbs([], language);
-  useSentry();
   useFaro();
   useStatistikk();
 
