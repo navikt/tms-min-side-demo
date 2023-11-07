@@ -209,7 +209,7 @@ const hjelpemidlerLenkerProd = [
   },
   {
     nb: "Sykefravær",
-    nn: "Sjukefravær",
+    nn: "Sjukefråvær",
     en: "Absence due to sickness",
     url: {
       nb: "https://www.nav.no/syk/sykefravaer",
