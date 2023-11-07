@@ -12,7 +12,7 @@ export const text = {
   ingenText: {
     nb: "Du har foreløpig ingen journalførte dokumenter å vise",
     nn: "Du har førebels ingen journalførte dokument å vise",
-    en: "You have currently no journalized documents to show",
+    en: "You have currently no archived documents to show",
   },
   dokumentarkiv: {
     nb: "Gå til dokumentarkivet",
