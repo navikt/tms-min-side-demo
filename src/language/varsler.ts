@@ -1,7 +1,7 @@
 export const text = {
   varsler: {
     nb: "Varsler",
-    nn: "Varsler",
+    nn: "Varsel",
     en: "Notification",
   },
   ingenVarsler: {

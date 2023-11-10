@@ -5,13 +5,13 @@ export const text = {
     en: "Drafts",
   },
   soknad: {
-    nb: "påbegynt søknad",
-    nn: "søknad du har starta på",
-    en: "started application",
+    nb: "En påbegynt søknad",
+    nn: "Du har starta på ein søknad",
+    en: "One started application",
   },
   soknader: {
-    nb: "påbegynte søknader",
-    nn: "søknadar du har starta på",
-    en: "started applications",
+    nb: (antall: number) => `Du har ${antall} påbegynte søknader`,
+    nn: (antall: number) => `Du har starta på ${antall} søknadar`,
+    en: (antall: number) => `you have started on ${antall} applications`,
   },
 };
