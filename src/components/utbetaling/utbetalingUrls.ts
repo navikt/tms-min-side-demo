@@ -1,8 +1,4 @@
-import dayjs from "dayjs";
 import { getEnvironmentClientSide } from "@utils/environment.client.ts";
-
-const toDate = dayjs().format("YYYYMMDD");
-const fromDate = dayjs().subtract(3, "month").format("YYYYMMDD");
 
 const UTBETALINGSOVERSIKT_URL = {
   local: "http://localhost:3000/utbetalingsoversikt",
@@ -11,10 +7,10 @@ const UTBETALINGSOVERSIKT_URL = {
 };
 
 const UTBETALINGSOVERSIKT_API_URL = {
-  local: "http://localhost:3000/utbetaling",
-  dev: "https://www.intern.dev.nav.no/tms-utbetalingsoversikt-api/utbetalinger",
-  prod: "https://person.nav.no/tms-utbetalingsoversikt-api/utbetalinger",
+  local: "http://localhost:3000/siste",
+  dev: "https://www.intern.dev.nav.no/tms-utbetalingsoversikt-api/utbetalinger/siste",
+  prod: "https://person.nav.no/tms-utbetalingsoversikt-api/utbetalinger/siste",
 };
 
-export const utbetalingsoversiktApiUrl = `${UTBETALINGSOVERSIKT_API_URL[getEnvironmentClientSide()]}?&fom=${fromDate}&tom=${toDate}`;
+export const utbetalingsoversiktApiUrl = UTBETALINGSOVERSIKT_API_URL[getEnvironmentClientSide()];
 export const utbetalingsoversiktUrl = UTBETALINGSOVERSIKT_URL[getEnvironmentClientSide()];
