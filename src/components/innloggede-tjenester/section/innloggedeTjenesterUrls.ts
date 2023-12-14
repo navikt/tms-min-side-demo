@@ -16,9 +16,9 @@ const jobbLenkerProd = [
     nn: "CV",
     en: "CV",
     url: {
-      nb: "https://arbeidsplassen.nav.no/minside",
-      nn: "https://arbeidsplassen.nav.no/minside",
-      en: "https://arbeidsplassen.nav.no/minside",
+      nb: "https://arbeidsplassen.nav.no/min-side",
+      nn: "https://arbeidsplassen.nav.no/min-side",
+      en: "https://arbeidsplassen.nav.no/min-side",
     },
   },
   {
@@ -89,9 +89,9 @@ const jobbLenkerDev = [
     nn: "CV",
     en: "CV",
     url: {
-      nb: "https://arbeidsplassen.nav.no/minside",
-      nn: "https://arbeidsplassen.nav.no/minside",
-      en: "https://arbeidsplassen.nav.no/minside",
+      nb: "https://arbeidsplassen.nav.no/min-side",
+      nn: "https://arbeidsplassen.nav.no/min-side",
+      en: "https://arbeidsplassen.nav.no/min-side",
     },
   },
   {
