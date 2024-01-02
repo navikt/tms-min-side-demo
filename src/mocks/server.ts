@@ -1,11 +1,11 @@
+import { mineSakerApiSisteUrl } from "@components/dokumentarkiv/dokumentarkivUrls";
 import { HttpResponse, http } from "msw";
 import { setupServer } from "msw/node";
 
 
 export const handlers = [
     http.get(
-
-        'https://person.nav.no/mine-saker-api/siste',
+        mineSakerApiSisteUrl,
         ({ request, params, cookies }) => {
           return HttpResponse.json({
             "sakstemaer": [
