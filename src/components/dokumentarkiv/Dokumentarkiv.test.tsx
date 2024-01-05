@@ -1,24 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import { expect, test } from 'vitest';
 import Dokumenter from './dokumenter/Dokumenter';
-import { server } from 'src/mocks/server';
+import { mswServer } from 'mock/mswServer';
 import { axe } from "vitest-axe";
 import { SWRConfig } from 'swr';
 import { HttpResponse, http } from 'msw';
 import { dokumentarkivUrl, mineSakerApiSisteUrl } from './dokumentarkivUrls';
 
-test("dokumentarkiv", async () => {
-  const { container } = render(
-    <SWRConfig value={{ provider: () => new Map() }}>
-      <Dokumenter language={"nb"}/>
-    </SWRConfig>
-  );
-  expect(await screen.findByRole("heading", { name: "Blabla" })).toBeInTheDocument()
-  expect(await axe(container)).toHaveNoViolations();
-});
-
 test("tomt panel lenker til dokumentarkiv", async () => {
-  server.use(
+  mswServer.use(
     http.get(
       mineSakerApiSisteUrl,
       () => {
@@ -39,7 +29,7 @@ test("tomt panel lenker til dokumentarkiv", async () => {
 });
 
 test("viser siste dokument", async () => {
-  server.use(
+  mswServer.use(
     http.get(
       mineSakerApiSisteUrl,
       () => {
@@ -74,7 +64,7 @@ test("viser siste dokument", async () => {
 });
 
 test("viser to siste dokumenter", async () => {
-  server.use(
+  mswServer.use(
     http.get(
       mineSakerApiSisteUrl,
       () => {

@@ -2,7 +2,7 @@ import matchers from "@testing-library/jest-dom/matchers";
 import { afterAll, afterEach, beforeAll, expect } from "vitest";
 import { cleanup } from "@testing-library/react";
 import * as axeMatchers from "vitest-axe/matchers";
-import { server } from "src/mocks/server";
+import { mswServer } from "mock/mswServer";
 
 expect.extend(matchers)
 expect.extend(axeMatchers);
@@ -11,14 +11,14 @@ expect.extend(axeMatchers);
 HTMLCanvasElement.prototype.getContext = vi.fn();
 
 beforeAll(() => {
-  server.listen({ onUnhandledRequest: "warn" });
+  mswServer.listen({ onUnhandledRequest: "warn" });
 });
 
 afterEach(() => {
-  server.resetHandlers();
+  mswServer.resetHandlers();
   cleanup();
 });
 
 afterAll(() => {
-  server.close();
+  mswServer.close();
 });
