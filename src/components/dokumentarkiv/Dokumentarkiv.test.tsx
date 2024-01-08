@@ -1,9 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { mswServer } from "mock/mswServer";
 import { HttpResponse, http } from "msw";
-import { SWRConfig } from "swr";
 import { expect, test } from "vitest";
 import { axe } from "vitest-axe";
+import { render } from "vitest-setup";
 import { dokumentarkivUrl, mineSakerApiSisteUrl } from "./dokumentarkivUrls";
 import Dokumenter from "./dokumenter/Dokumenter";
 
@@ -16,11 +16,7 @@ test("tomt panel lenker til dokumentarkiv", async () => {
     }),
   );
 
-  const { container } = render(
-    <SWRConfig value={{ provider: () => new Map() }}>
-      <Dokumenter language={"nb"} />
-    </SWRConfig>,
-  );
+  const { container } = render(<Dokumenter language={"nb"} />);
   expect(await screen.findByRole("link")).toHaveAttribute("href", dokumentarkivUrl);
   expect(await axe(container)).toHaveNoViolations();
 });
@@ -41,11 +37,7 @@ test("viser siste dokument", async () => {
     }),
   );
 
-  const { container } = render(
-    <SWRConfig value={{ provider: () => new Map() }}>
-      <Dokumenter language={"nb"} />
-    </SWRConfig>,
-  );
+  const { container } = render(<Dokumenter language={"nb"} />);
 
   expect(await screen.findByRole("heading", { name: "Serviceklager", level: 2 })).toBeInTheDocument();
   expect(await screen.findByRole("link", { name: /Serviceklager/ })).toHaveAttribute(
@@ -79,11 +71,7 @@ test("viser to siste dokumenter", async () => {
     }),
   );
 
-  render(
-    <SWRConfig value={{ provider: () => new Map() }}>
-      <Dokumenter language={"nb"} />
-    </SWRConfig>,
-  );
+  render(<Dokumenter language={"nb"} />);
 
   expect(await screen.findByRole("heading", { name: "Serviceklager", level: 2 })).toBeInTheDocument();
   expect(
