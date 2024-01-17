@@ -66,6 +66,7 @@ const Dokumenter = ({ language }: Props) => {
           {saker?.sakstemaer.slice(0, 2).map((dokument: Dokument) => (
             <Dokument
               key={dokument.kode}
+              kode={dokument.kode}
               href={dokument.detaljvisningUrl}
               sakstema={dokument.navn}
               sistEndret={dokument.sistEndret}

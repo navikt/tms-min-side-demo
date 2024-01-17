@@ -24,4 +24,9 @@ export const text = {
     nn: "Sist endret: ",
     en: "Last updated: ",
   },
+  aarsoppgaveTittel: {
+    nb: "Regnskap/utbetaling/årsoppgave",
+    nn: "Regnskap/utbetaling/årsoppgave",
+    en: "Regnskap/utbetaling/årsoppgave",
+  },
 };

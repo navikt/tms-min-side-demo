@@ -9,17 +9,21 @@ import styles from "./Dokument.module.css";
 
 interface Props {
   href: string;
+  kode: string;
   sakstema: string;
   sistEndret: string;
   language: Language;
 }
 
-const Dokument = ({ href, sakstema, sistEndret, language }: Props) => {
+const Dokument = ({ href, sakstema, kode, sistEndret, language }: Props) => {
+
+  const isAarsoppgaveTema = kode === "STO";
+
   return (
     <a className={styles.container} href={href} onClick={() => logEvent("dokumentarkiv", "generell", sakstema)}>
       <div>
         <Heading size="small" level="2">
-          {sakstema}
+          {isAarsoppgaveTema ? text.aarsoppgaveTittel[language] : sakstema}
         </Heading>
         <BodyLong className={styles.dato}>
           {text.detail[language] + formatDateMonth(sistEndret)}
