@@ -104,7 +104,10 @@ const DinOversikt = ({ language }: Props) => {
         liste.push("Aktivitetsplan")
         liste.push("Dialog med veileder")
       }
-      logGroupedEvent(liste);
+
+      liste.sort();
+
+      logGroupedEvent(liste.toString());
     }
   }, [shouldLogComposition]);
 
