@@ -8,12 +8,12 @@
 
 @media (min-width: 0px) {
   .container {
-    margin: 1rem 0 2rem 0;
+    margin: 1rem 0;
   }
 }
 
 @media (min-width: 648px) {
   .container {
-    margin: 1rem 0 2rem 0;
+    margin: 1rem 0;
   }
 }
