@@ -83,11 +83,9 @@ const DinOversikt = ({ language }: Props) => {
   } else {
     return (
       <div className={styles.oversiktContainer}>
-        {hasMicrofrontends || hasProduktkort || isUnderOppfolging || hasMeldekort ? (
-          <BodyShort as="h2" spacing>
-            {produktText.oversiktTittel[language]}
-          </BodyShort>
-        ) : null}
+        <BodyShort as="h2" spacing>
+          {produktText.oversiktTittel[language]}
+        </BodyShort>
         {isStandardInnsats && <AiaStandardWrapper />}
         {hasMeldekort && (
           <div className={styles.meldekort}>
