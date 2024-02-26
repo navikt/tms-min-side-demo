@@ -10,7 +10,7 @@
 
 .oversiktContainer {
   position: relative;
-  padding-top: calc(var(--tms-avstand-til-alertIsland) + 2.75rem);
+  padding-top: calc(var(--tms-avstand-til-alertIsland) + 3rem);
   padding-bottom: 2.75rem;
   padding-right: calc((100vw - 100%) / 2);
   padding-left: calc((100vw - 100%) / 2);
