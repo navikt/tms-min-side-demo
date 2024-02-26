@@ -1,19 +1,15 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  padding: 0.75rem;
+  padding: 0.5rem;
   border-radius: 1rem;
-  margin-bottom: 1rem;
   background: var(--a-deepblue-800);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15), 0 0 1px 0 rgba(0, 0, 0, 0.20);
-  min-height: 5rem;
+  min-height: 5rem; 
 }
 
 @media (min-width: 480px) {
  .container {
    flex-direction: row;
-   margin-bottom: 2rem;
-   min-height: 7rem;
  }
 }

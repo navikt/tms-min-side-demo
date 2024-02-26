@@ -1,6 +1,6 @@
 import { BodyShort } from "@navikt/ds-react";
 import useSWRImmutable from "swr/immutable";
-import { arbeidssokerUrl, meldekortApiUrl, microfrontendsUrl, mineSakerSakstemaerUrl, oppfolgingUrl, } from "../urls";
+import { arbeidssokerUrl, meldekortApiUrl, microfrontendsUrl, mineSakerSakstemaerUrl, oppfolgingUrl } from "../urls";
 import AiaStandardWrapper from "../arbeidssoker/AiaStandardWrapper";
 import DialogVeileder from "../dialog-veileder/DialogVeileder";
 import MeldekortWrapper from "../meldekort/MeldekortWrapper";
@@ -34,7 +34,6 @@ export const fetcher = async (path: string) => {
 
   return await response.json();
 };
-
 
 const getUniqueProdukter = (language: Language) => {
   const { data: sakstemaer } = useSWRImmutable<Sakstemaer>(mineSakerSakstemaerUrl, fetcher);
@@ -84,12 +83,10 @@ const DinOversikt = ({ language }: Props) => {
   } else {
     return (
       <div className={styles.oversiktContainer}>
+        <BodyShort as="h2" spacing>
+          {produktText.oversiktTittel[language]}
+        </BodyShort>
         {isStandardInnsats && <AiaStandardWrapper />}
-        {hasMicrofrontends || hasProduktkort || isUnderOppfolging || hasMeldekort ? (
-          <BodyShort as="h2" spacing>
-            {produktText.oversiktTittel[language]}
-          </BodyShort>
-        ) : null}
         {hasMeldekort && (
           <div className={styles.meldekort}>
             <MeldekortWrapper />
