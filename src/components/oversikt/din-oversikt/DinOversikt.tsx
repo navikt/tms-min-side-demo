@@ -11,10 +11,11 @@ import Produktkort from "../produktkort/Produktkort";
 import MicrofrontendWrapper from "./MicrofrontendWrapper";
 import Aktivitetsplan from "../aktivitetsplan/Aktivitetsplan";
 import { setIsError } from "../../../store/store.ts";
-import { logMfEvent } from "@utils/amplitude.ts";
+import { logGroupedEvent, logMfEvent } from "@utils/amplitude.ts";
 import type { EnabledMicrofrontends } from "./microfrontendTypes";
 import type { Language } from "@language/language.ts";
 import styles from "./DinOversikt.module.css";
+import { useEffect } from "react";
 
 type Sakstemaer = Array<{ kode: string }>;
 
@@ -46,24 +47,33 @@ const getUniqueProdukter = (language: Language) => {
     .filter((produktConfig) => produktConfig != undefined);
 
   const uniqueProduktConfigs = produktConfigs?.filter(
-    (produktConfig, index) => produktConfigs.findIndex((element) => element.tittel == produktConfig.tittel) === index,
+    (produktConfig, index) => produktConfigs.findIndex((element) => element.tittel == produktConfig.tittel) === index
   );
 
   return uniqueProduktConfigs;
 };
 
 const DinOversikt = ({ language }: Props) => {
-  const { data: enabledMicrofrontends } = useSWRImmutable<EnabledMicrofrontends>(microfrontendsUrl, fetcher, {
-    onError: () => setIsError(),
-    onSuccess: (data) => data.microfrontends.map((mf) => logMfEvent(`minside.${mf.microfrontend_id}`, true)),
-  });
+  const { data: sakstemaer, isLoading: isLoadingSakstemaer } = useSWRImmutable<Sakstemaer>(mineSakerSakstemaerUrl, fetcher);
+  const { data: enabledMicrofrontends, isLoading: isLoadingMicrofrontends } = useSWRImmutable<EnabledMicrofrontends>(
+    microfrontendsUrl,
+    fetcher,
+    {
+      onError: () => setIsError(),
+      onSuccess: (data) => data.microfrontends.map((mf) => logMfEvent(`minside.${mf.microfrontend_id}`, true)),
+    }
+  );
 
-  const { data: meldekortFraApi } = useSWRImmutable<MeldekortDataFraApi>(meldekortApiUrl, fetcher, {
-    onError: () => setIsError(),
-  });
+  const { data: meldekortFraApi, isLoading: isLoadingMeldekort } = useSWRImmutable<MeldekortDataFraApi>(
+    meldekortApiUrl,
+    fetcher,
+    {
+      onError: () => setIsError(),
+    }
+  );
 
-  const { data: arbeidssoker } = useSWRImmutable(arbeidssokerUrl, fetcher);
-  const { data: oppfolging } = useSWRImmutable(oppfolgingUrl, fetcher);
+  const { data: arbeidssoker, isLoading: isLoadingStandardAiA } = useSWRImmutable(arbeidssokerUrl, fetcher);
+  const { data: oppfolging, isLoading: isLoadingOppfolging } = useSWRImmutable(oppfolgingUrl, fetcher);
 
   const isUnderOppfolging = oppfolging?.underOppfolging;
   const isStandardInnsats = arbeidssoker?.erArbeidssoker && arbeidssoker?.erStandard;
@@ -77,6 +87,29 @@ const DinOversikt = ({ language }: Props) => {
   const hasProduktkort = uniqueProduktConfigs !== undefined && uniqueProduktConfigs.length > 0;
   const hasMicrofrontends = microfrontends !== undefined && microfrontends.length > 0;
   const hasMeldekort = isMeldekortbruker(meldekortFraApi);
+  const shouldLogComposition = !isLoadingMicrofrontends && !isLoadingMeldekort && !isLoadingStandardAiA && !isLoadingOppfolging && !isLoadingSakstemaer;
+
+  useEffect(() => {
+    if (shouldLogComposition) {
+      let liste = [];
+      enabledMicrofrontends.microfrontends.map((mf) => liste.push(mf.microfrontend_id));
+      uniqueProduktConfigs.map((produktkort) => liste.push("Produktkort - " + produktkort.tittel));
+      if (hasMeldekort) {
+        liste.push("meldekort")
+      }
+      if (isStandardInnsats) {
+        liste.push("AiA-standard")
+      }
+      if (isUnderOppfolging) {
+        liste.push("Aktivitetsplan")
+        liste.push("Dialog med veileder")
+      }
+
+      liste.sort();
+
+      logGroupedEvent(liste.toString());
+    }
+  }, [shouldLogComposition]);
 
   if (!hasMicrofrontends && !hasProduktkort && !isUnderOppfolging && !isStandardInnsats && !hasMeldekort) {
     return null;

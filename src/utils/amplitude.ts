@@ -21,3 +21,13 @@ export function logMfEvent(name: string, metric: boolean) {
     },
   });
 }
+
+export const logGroupedEvent = (list: string) => {
+  logAmplitudeEvent({
+    origin: "tms-min-side",
+    eventName: "minside-composition",
+    eventData: {
+      composition: list,
+    },
+  });
+};
