@@ -92,9 +92,11 @@ const DinOversikt = ({ language }: Props) => {
   useEffect(() => {
     if (shouldLogComposition) {
       let liste = [];
-      enabledMicrofrontends?.microfrontends.map((mf) => liste.push(mf.microfrontend_id));
-      uniqueProduktConfigs?.map((produktkort) => liste.push("Produktkort - " + produktkort.tittel));
 
+      if (hasMicrofrontends) {
+        enabledMicrofrontends?.microfrontends.map((mf) => liste.push(mf.microfrontend_id));
+        uniqueProduktConfigs?.map((produktkort) => liste.push("Produktkort - " + produktkort.tittel));
+      }
       if (hasMeldekort) {
         liste.push("meldekort")
       }
