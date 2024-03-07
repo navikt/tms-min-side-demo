@@ -94,7 +94,7 @@ const DinOversikt = ({ language }: Props) => {
       let liste = [];
 
       if (hasMicrofrontends) {
-        enabledMicrofrontends?.microfrontends.map((mf) => liste.push(mf.microfrontend_id));
+        enabledMicrofrontends?.microfrontends?.map((mf) => liste.push(mf.microfrontend_id));
       }
 
       uniqueProduktConfigs?.map((produktkort) => liste.push("Produktkort - " + produktkort.tittel));
