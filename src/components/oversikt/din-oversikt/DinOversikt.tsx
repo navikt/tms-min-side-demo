@@ -1,4 +1,5 @@
 import { BodyShort } from "@navikt/ds-react";
+import { useEffect } from "react";
 import useSWRImmutable from "swr/immutable";
 import { arbeidssokerUrl, meldekortApiUrl, microfrontendsUrl, mineSakerSakstemaerUrl, oppfolgingUrl } from "../urls";
 import AiaStandardWrapper from "../arbeidssoker/AiaStandardWrapper";
@@ -14,8 +15,8 @@ import { setIsError } from "../../../store/store.ts";
 import { logGroupedEvent, logMfEvent } from "@utils/amplitude.ts";
 import type { EnabledMicrofrontends } from "./microfrontendTypes";
 import type { Language } from "@language/language.ts";
+import { fetcher, include } from "@utils/api.client.ts";
 import styles from "./DinOversikt.module.css";
-import { useEffect } from "react";
 
 type Sakstemaer = Array<{ kode: string }>;
 
@@ -23,21 +24,8 @@ interface Props {
   language: Language;
 }
 
-export const fetcher = async (path: string) => {
-  const response = await fetch(path, {
-    method: "GET",
-    credentials: "include",
-  });
-
-  if (!response.ok) {
-    throw new Error("Fetch request failed");
-  }
-
-  return await response.json();
-};
-
 const getUniqueProdukter = (language: Language) => {
-  const { data: sakstemaer } = useSWRImmutable<Sakstemaer>(mineSakerSakstemaerUrl, fetcher);
+  const { data: sakstemaer } = useSWRImmutable<Sakstemaer>({ path: mineSakerSakstemaerUrl, options: include }, fetcher);
 
   const produktConfigMap = getProduktConfigMap(language);
 
@@ -54,26 +42,20 @@ const getUniqueProdukter = (language: Language) => {
 };
 
 const DinOversikt = ({ language }: Props) => {
-  const { data: sakstemaer, isLoading: isLoadingSakstemaer } = useSWRImmutable<Sakstemaer>(mineSakerSakstemaerUrl, fetcher);
-  const { data: enabledMicrofrontends, isLoading: isLoadingMicrofrontends } = useSWRImmutable<EnabledMicrofrontends>(
-    microfrontendsUrl,
-    fetcher,
-    {
+  const { data: sakstemaer, isLoading: isLoadingSakstemaer } = useSWRImmutable<Sakstemaer>({ path: mineSakerSakstemaerUrl, options: include }, fetcher);
+  const { data: enabledMicrofrontends, isLoading: isLoadingMicrofrontends } = useSWRImmutable<EnabledMicrofrontends>({path: microfrontendsUrl, options: include }, fetcher, {
       onError: () => setIsError(),
       onSuccess: (data) => data.microfrontends.map((mf) => logMfEvent(`minside.${mf.microfrontend_id}`, true)),
     }
   );
 
-  const { data: meldekortFraApi, isLoading: isLoadingMeldekort } = useSWRImmutable<MeldekortDataFraApi>(
-    meldekortApiUrl,
-    fetcher,
-    {
+  const { data: meldekortFraApi, isLoading: isLoadingMeldekort } = useSWRImmutable<MeldekortDataFraApi>({ path: meldekortApiUrl, options: include }, fetcher, {
       onError: () => setIsError(),
     }
   );
 
-  const { data: arbeidssoker, isLoading: isLoadingStandardAiA } = useSWRImmutable(arbeidssokerUrl, fetcher);
-  const { data: oppfolging, isLoading: isLoadingOppfolging } = useSWRImmutable(oppfolgingUrl, fetcher);
+  const { data: arbeidssoker, isLoading: isLoadingStandardAiA } = useSWRImmutable({ path: arbeidssokerUrl, options: include }, fetcher);
+  const { data: oppfolging, isLoading: isLoadingOppfolging } = useSWRImmutable({ path: oppfolgingUrl, options: include }, fetcher);
 
   const isUnderOppfolging = oppfolging?.underOppfolging;
   const isStandardInnsats = arbeidssoker?.erArbeidssoker && arbeidssoker?.erStandard;
