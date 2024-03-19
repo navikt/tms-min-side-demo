@@ -7,10 +7,12 @@ export const getProduktProperties = (language: Language, personalizedContent?: P
   if (personalizedContent === undefined) return undefined;
 
   const produktPropertiesMap = getProduktPropertiesMap(language);
+  const byKode = (a: string, b: string) => a.localeCompare(b);
+  const toProduktProperties = (sakstema:string) => produktPropertiesMap[sakstema]
 
   return personalizedContent?.produktkort
-    ?.sort((a, b) => a.localeCompare(b))
-    .map((sakstema) => produktPropertiesMap[sakstema]);
+    ?.sort(byKode)
+    .map(toProduktProperties);
 };
 
 export const hasMicrofrontends = (microfrontends: any) => microfrontends !== undefined && microfrontends.length > 0;

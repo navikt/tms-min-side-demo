@@ -1,22 +1,22 @@
 import { BodyShort } from "@navikt/ds-react";
-import { useEffect } from "react";
 import useSWRImmutable from "swr/immutable";
 import { microfrontendsUrl } from "./urls";
 import AiaStandardWrapper from "./arbeidssoker/AiaStandardWrapper";
 import DialogVeileder from "./dialog-veileder/DialogVeileder";
 import MeldekortWrapper from "./meldekort/MeldekortWrapper";
-import { getProduktProperties, hasMicrofrontends } from "@utils/oversikt.ts";
+import { getProduktProperties } from "@utils/oversikt.ts";
 import { produktText } from "./produktkort/ProduktText";
 import Produktkort from "./produktkort/Produktkort";
 import MicrofrontendWrapper from "./MicrofrontendWrapper";
 import Aktivitetsplan from "./aktivitetsplan/Aktivitetsplan";
 import { setIsError } from "./../../store/store.ts";
-import { logGroupedEvent, logMfEvent } from "@utils/amplitude.ts";
+import { logMfEvent } from "@utils/amplitude.ts";
 import type { PersonalizedContent } from "./microfrontendTypes";
 import type { Language } from "@language/language.ts";
 import { fetcher, include } from "@utils/api.client.ts";
 import styles from "./DinOversikt.module.css";
 import { useOversikt } from "@hooks/useOversikt.ts";
+import { useLogComposition } from "@hooks/useLogComposition.ts";
 
 interface Props {
   language: Language;
@@ -24,43 +24,17 @@ interface Props {
 
 const DinOversikt = ({ language }: Props) => {
   const {
-    data: personalizedContent,
-    isLoading: isLoadingMicrofrontends
+    data: personalizedContent
   } = useSWRImmutable<PersonalizedContent>({ path: microfrontendsUrl, options: include }, fetcher, {
       onError: () => setIsError(),
       onSuccess: (data) => data.microfrontends.map((mf) => logMfEvent(`minside.${mf.microfrontend_id}`, true))
     }
   );
 
-
   const produktProperties = getProduktProperties(language, personalizedContent);
   const shouldShowOversikt = useOversikt(produktProperties);
 
-  useEffect(() => {
-    if (!isLoadingMicrofrontends) {
-      let liste = [];
-
-      if (hasMicrofrontends(personalizedContent)) {
-        personalizedContent?.microfrontends?.map((mf) => liste.push(mf.microfrontend_id));
-      }
-
-      produktProperties?.map((produktkort) => liste.push("Produktkort - " + produktkort.tittel));
-
-      if (personalizedContent?.meldekort) {
-        liste.push("meldekort");
-      }
-      if (personalizedContent?.aiaStandard) {
-        liste.push("AiA-standard");
-      }
-      if (personalizedContent?.oppfolgingContent) {
-        liste.push("Aktivitetsplan");
-        liste.push("Dialog med veileder");
-      }
-
-      liste.sort();
-      logGroupedEvent(liste.toString());
-    }
-  }, [!isLoadingMicrofrontends]);
+  useLogComposition(produktProperties)
 
   if (!shouldShowOversikt) {
     return null
