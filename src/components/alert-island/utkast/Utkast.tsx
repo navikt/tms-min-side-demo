@@ -1,7 +1,7 @@
 import useSWRImmutable from "swr/immutable";
 import UtkastIkon from "./UtkastIkon";
 import { fetcher } from "@utils/api.client.ts";
-import { antallUtkastDigisosUrl, antallUtkastUrl, utkastUrl } from "./utkastUrls";
+import { antallUtkastUrl, utkastUrl } from "./utkastUrls";
 import type { Language } from "@language/language.ts";
 import { text } from "@language/utkast.ts";
 import { logEvent } from "@utils/amplitude.ts";
@@ -14,9 +14,8 @@ interface Props {
 
 const Utkast = ({ language }: Props) => {
   const { data: utkastAntall, isLoading: utkastLoading, error: utkastError } = useSWRImmutable({ path : antallUtkastUrl }, fetcher);
-  const { data: digisosAntall, isLoading: digisosLoading, error: digisosError } = useSWRImmutable({ path: antallUtkastDigisosUrl }, fetcher);
 
-  const antall = (utkastAntall ? utkastAntall?.antall : 0) + (digisosAntall ? digisosAntall?.antall : 0);
+  const antall = (utkastAntall ? utkastAntall?.antall : 0);
   const hasUtkast = antall > 0;
   const ingress = antall === 1 ? text.soknad[language] : text.soknader[language](antall);
 
@@ -24,11 +23,7 @@ const Utkast = ({ language }: Props) => {
     return null;
   }
 
-  if (digisosLoading) {
-    return null;
-  }
-
-  if (utkastError || digisosError) {
+  if (utkastError) {
     setIsError();
   }
 
