@@ -10,5 +10,8 @@
     }
   ],
   "produktkort": ["DAG", "FOR", "HJE", "KOM", "PEN", "UFO", "SYK"],
+  "aiaStandard": true,
+  "oppfolgingContent": true,
+  "meldekort": true,
   "offerStepup": false
 }
