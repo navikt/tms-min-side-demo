@@ -9,6 +9,12 @@
       "url": "http://localhost:3000/syfo-dialog/bundle.js"
     }
   ],
+  "aktuelt": [
+    {
+      "microfrontend_id": "pensjon",
+      "url": "http://localhost:3000/pensjon/bundle.js"
+    }
+  ],
   "produktkort": ["DAG", "FOR", "HJE", "KOM", "PEN", "UFO", "SYK"],
   "aiaStandard": true,
   "oppfolgingContent": true,
