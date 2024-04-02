@@ -20,7 +20,7 @@ const Aktuelt = ({ language }: Props) => {
 
   return (
     <div className={style.container}>
-      <BodyShort className={style["aktuelt"]} size={"medium"} textColor={"subtle"}>{text.aktuelt[language]}</BodyShort>
+      <BodyShort as="h2" className={style["aktuelt"]} spacing>{text.aktuelt[language]}</BodyShort>
       {data?.aktuelt?.map((microfrontend : EnabledMicrofrontend) => <MicrofrontendWrapper key={microfrontend.microfrontend_id} manifestUrl={microfrontend.url}/>)}
     </div>
   );
