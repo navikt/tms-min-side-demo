@@ -28,9 +28,9 @@ const language = getLanguage(Astro.url);
       <Utbetaling />
       <Innboks />
       <Dokumentarkiv />
+      <Aktuelt language={language} client:only="react" />
     </Container>
     <Aia client:only="react" />
-    <Aktuelt language={language} client:only="react" />
     <InnloggedeTjenester />
   </Content>
   <Authentication client:only="react" />
