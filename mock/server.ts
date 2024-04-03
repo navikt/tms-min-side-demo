@@ -74,6 +74,14 @@ api.get('/bundle.js', (c) => {
   });
 });
 
+api.get('/pensjon/bundle.js', (c) => {
+  return new Response(mikrofrontendBundle("Pensjon", "5vh"),  {
+    headers: {
+      "Content-Type": "text/javascript",
+    },
+  });
+});
+
 api.get('/syfo-dialog/bundle.js', (c) => {
   return new Response(mikrofrontendBundle("Syfo dialog", "5vh"),  {
     headers: {
