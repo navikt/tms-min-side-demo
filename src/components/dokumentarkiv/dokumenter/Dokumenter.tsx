@@ -30,6 +30,16 @@ interface Props {
 const Dokumenter = ({ language }: Props) => {
   const { data: saker, isLoading, error } = useSWRImmutable<Dokumenter>({ path: mineSakerApiSisteUrl, options: include }, fetcher);
   const hasDokumenter = saker && saker.sakstemaer.length > 0;
+  
+  const spraakTilpassetDokumentarkivUrl = (language: Language) => {
+    if(language === "en") {
+      return dokumentarkivUrl + "/en";
+    }
+    if(language === "nn") {
+      return dokumentarkivUrl + "/nn";
+    }
+    return dokumentarkivUrl;
+  }
 
   if (isLoading) {
     return (
@@ -76,7 +86,7 @@ const Dokumenter = ({ language }: Props) => {
           <BodyShort className={styles.linkContainer}>
             <a
               className={styles.link}
-              href={dokumentarkivUrl}
+              href={spraakTilpassetDokumentarkivUrl(language)}
               onClick={() => logEvent("dokumentarkiv", "generell", "Gå til dokumentarkivet")}
             >
               {text.dokumentarkiv[language]}
@@ -97,7 +107,7 @@ const Dokumenter = ({ language }: Props) => {
             </BodyLong>
           </div>
           <div className={styles.skeletonContainer} />
-            <a className={styles.link} href={dokumentarkivUrl} >
+            <a className={styles.link} href={spraakTilpassetDokumentarkivUrl(language)} >
               {text.dokumentarkiv[language]}
             </a>
           </div>
