@@ -27,7 +27,7 @@ export const useLogComposition = (produktProperties?: ProduktProperties[]) => {
       }
 
       if (hasAktueltMicrofrontends(personalizedContent)) {
-        personalizedContent?.aktuelt?.map((mf) => liste.push(mf.microfrontend_id));
+        personalizedContent?.aktuelt?.map((mf) => liste.push("Aktuelt - " + mf.microfrontend_id));
       }
 
       produktProperties?.map((produktkort) => liste.push("Produktkort - " + produktkort.tittel));
