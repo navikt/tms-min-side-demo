@@ -1,13 +1,18 @@
 import { useEffect } from "react";
-import { onLanguageSelect, setAvailableLanguages, setParams } from "@navikt/nav-dekoratoren-moduler";
+import { onLanguageSelect, setAvailableLanguages, setParams, DecoratorLocale } from "@navikt/nav-dekoratoren-moduler";
 import type { Language } from "@language/language";
+
+export const setSessionLanguage = (language : DecoratorLocale) => {
+  window.sessionStorage.setItem("language", language );
+}
 
 export const useLanguage = (language: Language) => {
   const [_leadingSlash, _basePath, _oldLocale, ...rest] = window.location.pathname.split("/");
   const slug = rest.join("/");
+  setSessionLanguage(language)
 
   onLanguageSelect((language) => {
-    window.sessionStorage.setItem("language", language.locale);
+    setSessionLanguage(language.locale )
     window.location.pathname = `/minside/${language.locale}/${slug}`;
   });
 
