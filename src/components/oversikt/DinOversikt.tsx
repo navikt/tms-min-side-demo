@@ -47,7 +47,7 @@ const DinOversikt = ({ language }: Props) => {
         <BodyShort as="h2" spacing>
           {produktText.oversiktTittel[language]}
         </BodyShort>
-        {personalizedContent?.brukNyAia && <NyAiaStandardWrapper />}
+        {personalizedContent?.brukNyAia && <div className={styles.nyAia}><NyAiaStandardWrapper /></div>}
         {personalizedContent?.aiaStandard && <AiaStandardWrapper />}
         {personalizedContent?.meldekort && (
           <div className={styles.meldekort}>

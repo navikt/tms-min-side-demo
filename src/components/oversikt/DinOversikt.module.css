@@ -15,7 +15,7 @@
   gap: 1rem;
 }
 
-.meldekort {
+.meldekort, .nyAia {
   padding-bottom: 1rem;
 }
 
@@ -25,7 +25,7 @@
     gap: 1.5rem;
   }
 
-  .meldekort {
+  .meldekort, .nyAia {
     padding-bottom: 1.5rem;
   }
 }
