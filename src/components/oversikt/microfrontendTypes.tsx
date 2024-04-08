@@ -14,5 +14,6 @@ export interface PersonalizedContent {
   brukNyAia: boolean;
   oppfolgingContent: boolean;
   meldekort: boolean;
+  aktuelt: EnabledMicrofrontend[]; 
   offerStepup: boolean;
 }

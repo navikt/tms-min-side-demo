@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { hasMicrofrontends } from "@utils/oversikt.ts";
+import { hasMicrofrontends, hasAktueltMicrofrontends } from "@utils/oversikt.ts";
 import { logGroupedEvent, logMfEvent } from "@utils/amplitude.ts";
 import { PersonalizedContent } from "@components/oversikt/microfrontendTypes.tsx";
 import useSWRImmutable from "swr/immutable";
@@ -24,6 +24,10 @@ export const useLogComposition = (produktProperties?: ProduktProperties[]) => {
 
       if (hasMicrofrontends(personalizedContent)) {
         personalizedContent?.microfrontends?.map((mf) => liste.push(mf.microfrontend_id));
+      }
+
+      if (hasAktueltMicrofrontends(personalizedContent)) {
+        personalizedContent?.aktuelt?.map((mf) => liste.push(mf.microfrontend_id));
       }
 
       produktProperties?.map((produktkort) => liste.push("Produktkort - " + produktkort.tittel));
