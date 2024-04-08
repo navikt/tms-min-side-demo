@@ -16,3 +16,6 @@ export const getProduktProperties = (language: Language, personalizedContent?: P
 };
 
 export const hasMicrofrontends = (microfrontends: any) => microfrontends !== undefined && microfrontends.length > 0;
+
+export const hasAktueltMicrofrontends = (microfrontends: any) => microfrontends !== undefined && microfrontends.length > 0;
+
