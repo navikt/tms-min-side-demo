@@ -22,11 +22,11 @@ export const useLogComposition = (produktProperties?: ProduktProperties[]) => {
     if (!isLoadingMicrofrontends) {
       let liste = [];
 
-      if (hasMicrofrontends(personalizedContent)) {
+      if (hasMicrofrontends(personalizedContent?.microfrontends)) {
         personalizedContent?.microfrontends?.map((mf) => liste.push(mf.microfrontend_id));
       }
 
-      if (hasAktueltMicrofrontends(personalizedContent)) {
+      if (hasAktueltMicrofrontends(personalizedContent?.aktuelt)) {
         personalizedContent?.aktuelt?.map((mf) => liste.push("Aktuelt - " + mf.microfrontend_id));
       }
 
