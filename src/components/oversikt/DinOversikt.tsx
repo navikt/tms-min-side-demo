@@ -1,6 +1,4 @@
 import { BodyShort } from "@navikt/ds-react";
-import useSWRImmutable from "swr/immutable";
-import { dinOversiktUrl } from "./urls";
 import AiaStandardWrapper from "./arbeidssoker/AiaStandardWrapper";
 import NyAiaStandardWrapper from "./arbeidssoker/NyAiaStandardWrapper.tsx";
 import DialogVeileder from "./dialog-veileder/DialogVeileder";
@@ -10,28 +8,19 @@ import { produktText } from "./produktkort/ProduktText";
 import Produktkort from "./produktkort/Produktkort";
 import MicrofrontendWrapper from "./MicrofrontendWrapper";
 import Aktivitetsplan from "./aktivitetsplan/Aktivitetsplan";
-import { setIsError } from "./../../store/store.ts";
-import { logMfEvent } from "@utils/amplitude.ts";
-import type { PersonalizedContent } from "./microfrontendTypes";
+import { personalizedContentAtom } from "./../../store/store.ts";
 import type { Language } from "@language/language.ts";
-import { fetcher, include } from "@utils/api.client.ts";
 import { useOversikt } from "@hooks/useOversikt.ts";
 import { useLogComposition } from "@hooks/useLogComposition.ts";
 import styles from "./DinOversikt.module.css";
+import { useStore } from "@nanostores/react";
 
 interface Props {
   language: Language;
 }
 
 const DinOversikt = ({ language }: Props) => {
-  const {
-    data: personalizedContent
-  } = useSWRImmutable<PersonalizedContent>({ path: dinOversiktUrl, options: include }, fetcher, {
-      onError: () => setIsError(),
-      onSuccess: (data) => data.microfrontends.map((mf) => logMfEvent(`minside.${mf.microfrontend_id}`, true))
-    }
-  );
-
+  const personalizedContent = useStore(personalizedContentAtom);
   const produktProperties = getProduktProperties(language, personalizedContent);
   const shouldShowOversikt = useOversikt(produktProperties);
 
@@ -55,7 +44,7 @@ const DinOversikt = ({ language }: Props) => {
           </div>
         )}
         <div className={styles.listeContainer}>
-          {personalizedContent?.microfrontends.map((mf) => (
+          {personalizedContent?.microfrontends?.map((mf) => (
             <MicrofrontendWrapper manifestUrl={mf.url} key={mf.microfrontend_id} />
           ))}
           {personalizedContent?.oppfolgingContent && (

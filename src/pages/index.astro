@@ -14,11 +14,13 @@ import Feilmelding from "@components/feilmelding/Feilmelding";
 import { getLanguage } from "@language/language";
 import Authentication from "@components/authentication/Authentication";
 import Aktuelt from "@components/aktuelt/Aktuelt";
+import DemoToggle from "../components/demo-toggle/DemoToggle";
 
 const language = getLanguage(Astro.url);
 ---
 
 <Layout title="Min side" breadcrumbs={[]}>
+  <DemoToggle client:only="react" />
   <Content cls="min-side">
     <Feilmelding language={language} client:only="react" />
     <Personalia />

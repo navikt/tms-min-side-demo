@@ -47,8 +47,6 @@ api.get('/innboks', (c) => {
   return c.json(innboks);
 });
 
-
-
 api.get('/siste-saker', (c) => {
   return c.json(sisteSaker);
 });
