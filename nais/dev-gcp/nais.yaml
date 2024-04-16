@@ -1,7 +1,7 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: tms-min-side
+  name: tms-min-side-demo
   namespace: min-side
   labels:
     team: min-side
@@ -13,15 +13,13 @@ spec:
       level: Level3
   tokenx:
     enabled: true
-  envFrom:
-    - secret: tms-min-side-secrets
   image: {{image}}
   port: 3000
   liveness:
-    path: /minside/api/internal/isAlive
+    path: /minside-demo/api/internal/isAlive
     initialDelay: 10
   readiness:
-    path: /minside/api/internal/isReady
+    path: /minside-demo/api/internal/isReady
     initialDelay: 10
   replicas:
     min: 2
@@ -32,7 +30,7 @@ spec:
         - application: nav-dekoratoren
           namespace: personbruker
   ingresses:
-    - "https://www.intern.dev.nav.no/minside"
+    - "https://www.ansatt.dev.nav.no/minside-demo"
   resources:
     limits:
       cpu: "1"

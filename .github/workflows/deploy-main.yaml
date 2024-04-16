@@ -35,7 +35,7 @@ jobs:
         with:
           team: min-side
           source: ./dist/client/_astro
-          destination: 'tms-min-side'
+          destination: 'tms-min-side-demo'
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
 
@@ -55,7 +55,7 @@ jobs:
     needs: "build"
     strategy:
       matrix:
-        cluster: [ dev-gcp, prod-gcp ]
+        cluster: [ dev-gcp ]
     steps:
       - uses: "actions/checkout@v3"
       - name: "Deploy"
