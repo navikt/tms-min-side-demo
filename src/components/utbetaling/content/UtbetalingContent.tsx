@@ -18,7 +18,27 @@ interface Props {
 }
 
 const UtbetalingContent = ({ language }: Props) => {
-  const { data, isLoading, error } = useSWRImmutable<UtbetalingResponse>({ path: utbetalingsoversiktApiUrl, options: include }, fetcher);
+
+  const data = {
+    "hasKommende": false,
+    "hasUtbetaling": true,
+    "sisteUtbetaling": {
+        "utbetaling": 1234,
+        "dato": "2023-11-14",
+        "ytelse": "Arbeidsavklaringspenger",
+      "kontonummer": 1234,
+        "id": 1233
+      },
+    "kommende": {
+         "utbetaling": 1234,
+      "dato": "2023-11-14",
+         "ytelse": "Arbeidsavklaringspenger",
+      "kontonummer": 1234,
+         "id": 1233
+    }
+  }
+  const isLoading = false;
+  const error = false;
 
   if (isLoading) {
     return (

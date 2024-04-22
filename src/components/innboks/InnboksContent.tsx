@@ -19,7 +19,12 @@ interface Props {
 }
 
 const InnboksContent = ({ language }: Props) => {
-  const { data: varsler, isLoading, error } = useSWRImmutable({ path: antallVarslerUrl }, fetcher);
+
+  const varsler = {
+    "innbokser": 4
+  }
+  const error = false;
+  const isLoading = false;
 
   useLanguage(language);
   useFaro();

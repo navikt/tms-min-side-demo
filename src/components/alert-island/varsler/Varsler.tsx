@@ -22,7 +22,13 @@ interface VarslerResponse {
 }
 
 const Varsler = ({ language }: Props) => {
-  const { data, isLoading, error } = useSWRImmutable<VarslerResponse>({ path: antallVarslerUrl }, fetcher);
+  const data = {
+    "oppgaver": 3,
+    "beskjeder": 2,
+    "innbokser": 4
+  }
+  const isLoading = false;
+  const error = false;
 
   if (isLoading) {
     return null;
