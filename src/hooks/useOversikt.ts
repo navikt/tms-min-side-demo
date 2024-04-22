@@ -10,11 +10,10 @@ import { useStore } from "@nanostores/react";
 
 export const useOversikt = (produktProperties?: ProduktProperties[]) => {
   const personalizedContent = useStore(personalizedContentAtom);
-
   const hasProduktkort = (produktConfig?: ProduktProperties[]) => produktConfig !== undefined && produktConfig.length > 0;
 
   return (
-    hasMicrofrontends(personalizedContent)
+    hasMicrofrontends(personalizedContent.microfrontends)
     || hasProduktkort(produktProperties)
     || personalizedContent?.oppfolgingContent
     || personalizedContent?.aiaStandard
