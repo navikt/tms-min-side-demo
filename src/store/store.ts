@@ -21,12 +21,24 @@ export const oppfolgingContentAtom = atom<boolean>(false);
 export const meldekortAtom = atom<boolean>(false);
 export const aktueltAtom = atom<EnabledMicrofrontend[]>([]);
 
+export function setProduktkortAtom(value: string[]) {
+  produktkortAtom.set(value)
+}
+
 export function setMicrofrontendsAtom(value: EnabledMicrofrontend[]) {
   microfrontendsAtom.set(value)
 }
 
 export function setMeldekortAtom(value: boolean) {
   meldekortAtom.set(value)
+}
+
+export function setOppfolgingContentAtom(value: boolean) {
+  oppfolgingContentAtom.set(value)
+}
+
+export function setAiaStandardAtom(value: boolean) {
+  aiaStandardAtom.set(value)
 }
 
 export function setIsError() {
