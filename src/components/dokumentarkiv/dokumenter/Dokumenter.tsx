@@ -28,7 +28,27 @@ interface Props {
 }
 
 const Dokumenter = ({ language }: Props) => {
-  const { data: saker, isLoading, error } = useSWRImmutable<Dokumenter>({ path: mineSakerApiSisteUrl, options: include }, fetcher);
+
+  const saker = {
+    "sakstemaer": [
+      {
+        "navn": "Serviceklager",
+        "kode": "SER",
+        "sistEndret": "2023-05-25T12:41:02Z",
+        "detaljvisningUrl": "https://www.intern.dev.nav.no/mine-saker/tema/SER"
+      },
+      {
+        "navn": "Arbeidsavklaringspenger",
+        "kode": "AAP",
+        "sistEndret": "2023-04-20T11:33:51Z",
+        "detaljvisningUrl": "https://aap-innsyn.dev.nav.no/aap/mine-aap"
+      }
+    ]
+  }
+
+  const isLoading = false;
+  const error = false;
+
   const hasDokumenter = saker && saker.sakstemaer.length > 0;
   
   const spraakTilpassetDokumentarkivUrl = (language: Language) => {
