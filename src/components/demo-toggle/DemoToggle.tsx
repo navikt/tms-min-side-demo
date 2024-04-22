@@ -50,9 +50,9 @@ const DemoToggle = () => {
         <Checkbox value="Meldekort">Meldekort</Checkbox>
       </CheckboxGroup>
       <CheckboxGroup legend="Microfrontends" onChange={handleMicrofrontendsChange}>
-        <Checkbox value={{ microfrontend_id: "aap", url: "http://localhost:3000/aap/bundle.js" }}>AAP</Checkbox>
-        <Checkbox value={{ microfrontend_id: "syfo-dialog", url: "http://localhost:3000/syfo-dialog/bundle.js" }}>Syfo-dialog</Checkbox>
-        <Checkbox value={{ microfrontend_id: "pensjon", url: "http://localhost:3000/pensjon/bundle.js" }}>Pensjon</Checkbox>
+        <Checkbox value={{ microfrontend_id: "aap", url: "https://www.ansatt.dev.nav.no/minside-demo/api/microfrontend/bundle" }}>AAP</Checkbox>
+        <Checkbox value={{ microfrontend_id: "syfo-dialog", url: "https://www.ansatt.dev.nav.no/minside-demo/api/microfrontend/bundle" }}>Syfo-dialog</Checkbox>
+        <Checkbox value={{ microfrontend_id: "pensjon", url: "https://www.ansatt.dev.nav.no/minside-demo/api/microfrontend/bundle" }}>Pensjon</Checkbox>
       </CheckboxGroup>
       <CheckboxGroup legend="Dialog med veileder og Aktivitetsplan" onChange={handleOppfolgingContentChange}>
         <Checkbox value="OppfolgingContent">Dialog med veileder og Aktivitetsplan</Checkbox>
