@@ -1,3 +1,4 @@
+import type { APIRoute } from "astro";
 import { mikrofrontendBundle } from "../../../../mock/data/microfrontend/microfrontend-oversikt.ts";
 
 export const GET: APIRoute = async function get({ params, request }) {
