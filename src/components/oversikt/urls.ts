@@ -8,8 +8,8 @@ const MIN_SIDE_PROXY_URL = {
 
 const MELDEKORT_URL = {
   local: "http://localhost:3000/meldekort/bundle.js",
-  dev: "https://www.intern.dev.nav.no/meldekort-mikrofrontend/meldekort-mikrofrontend.js",
-  prod: "https://www.nav.no/meldekort-mikrofrontend/meldekort-mikrofrontend.js",
+  dev: "https://www.ansatt.dev.nav.no/minside-demo/api/microfrontend/bundle",
+  prod: "https://www.ansatt.dev.nav.no/minside-demo/api/microfrontend/bundle",
 };
 
 const SELECTOR_URL = {
