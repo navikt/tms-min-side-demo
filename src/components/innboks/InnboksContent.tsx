@@ -27,7 +27,6 @@ const InnboksContent = ({ language }: Props) => {
   const isLoading = false;
 
   useLanguage(language);
-  useFaro();
   useStatistikk();
 
   const innbokser = varsler?.innbokser;
