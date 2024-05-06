@@ -3,3 +3,16 @@
   gap: 2rem;
   justify-content: center;
 }
+
+.microfrontendToggles {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}

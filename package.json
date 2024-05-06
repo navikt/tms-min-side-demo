@@ -24,24 +24,25 @@
     "openid-client": "5.4.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "styled-components": "^6.1.9",
     "swr": "2.2.4"
   },
   "devDependencies": {
+    "@hono/node-server": "1.4.1",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "14.0.0",
     "@testing-library/user-event": "14.5.1",
-    "@hono/node-server": "1.4.1",
     "@types/node": "20.2.5",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
     "hono": "3.11.7",
+    "msw": "2.0.11",
     "prettier": "3.1.1",
     "prettier-plugin-astro": "0.12.3",
     "rollup-plugin-import-map": "3.0.0",
     "tsx": "3.13.0",
     "vitest": "1.1.1",
-    "vitest-axe": "0.1.0",
-    "msw": "2.0.11"
+    "vitest-axe": "0.1.0"
   },
   "prettier": {
     "printWidth": 120
