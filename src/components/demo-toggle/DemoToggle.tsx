@@ -112,21 +112,21 @@ const DemoToggle = () => {
               <CheckboxGroup legend="AAP" onChange={handleAapChange}>
                 <Checkbox value="AAP">AAP</Checkbox>
               </CheckboxGroup>
-              <CheckboxGroup legend="FamilieEf" onChange={handleFamilieEfChange}>
-                <Checkbox value="FamilieEf">Familie (Enslig forsørger)</Checkbox>
+              <CheckboxGroup legend="Familie EF" onChange={handleFamilieEfChange}>
+                <Checkbox value="FamilieEF">Familie (Enslig forsørger)</Checkbox>
               </CheckboxGroup>
             </div>
             <div className={styles.microfrontendToggles}>
               <CheckboxGroup legend="Pleiepenger" onChange={handlePleiepengerChange}>
                 <Checkbox value="Pleiepenger">Pleiepenger</Checkbox>
               </CheckboxGroup>
-              <CheckboxGroup legend="SyfoAktivitetskrav" onChange={handleSyfoAktivitetskravChange}>
+              <CheckboxGroup legend="Syfo Aktivitetskrav" onChange={handleSyfoAktivitetskravChange}>
                 <Checkbox value="SyfoAktivitetskrav">Syfo Aktivitetskrav</Checkbox>
               </CheckboxGroup>
-              <CheckboxGroup legend="SyfoDialog" onChange={handleSyfoDialogChange}>
+              <CheckboxGroup legend="Syfo Dialog" onChange={handleSyfoDialogChange}>
                 <Checkbox value="SyfoDialog">Syfo Dialog</Checkbox>
               </CheckboxGroup>
-              <CheckboxGroup legend="SyfoOppfolging" onChange={handleSyfoOppfolgingChange}>
+              <CheckboxGroup legend="Syfo Oppfølging" onChange={handleSyfoOppfolgingChange}>
                 <Checkbox value="SyfoOppfolging">Syfo Oppfølging</Checkbox>
               </CheckboxGroup>
             </div>

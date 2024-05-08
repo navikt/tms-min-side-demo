@@ -67,18 +67,18 @@ const DinOversikt = ({ language }: Props) => {
           {personalizedContent?.microfrontends?.map((mf) => (
             <MicrofrontendWrapper manifestUrl={mf.url} key={mf.microfrontend_id} />
           ))}
-          {showAap && <AapMicrofrontend />}
-          {showFamilieEf && <FamilieEfMicrofrontend />}
-          {showPleiepenger && <PleiepengerMicrofrontend />}
-          {showAktivitetskrav && <AktivitetskravMicrofrontend />}
-          {showDialog && <DialogMicrofrontend />}
-          {showOppfolging && <OppfolgingMikrofrontend />}
           {showMeldekort && (
             <>
               <MeldekortEtterregistrering /> 
               <MeldekortReady />
             </>
           )}
+          {showAap && <AapMicrofrontend />}
+          {showFamilieEf && <FamilieEfMicrofrontend />}
+          {showPleiepenger && <PleiepengerMicrofrontend />}
+          {showAktivitetskrav && <AktivitetskravMicrofrontend />}
+          {showDialog && <DialogMicrofrontend />}
+          {showOppfolging && <OppfolgingMikrofrontend />}
           {personalizedContent?.oppfolgingContent && (
             <>
               <DialogVeileder language={language} />
